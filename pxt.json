@@ -6,7 +6,8 @@
         "color-coded-tilemap": "*",
         "color": "*",
         "pxt-status-bar": "github:jwunderl/pxt-status-bar#v0.3.1",
-        "darts": "*"
+        "darts": "*",
+        "animation": "*"
     },
     "files": [
         "main.ts",
