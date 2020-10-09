@@ -3,6 +3,13 @@ Title: Jump Knight
 Creators: Nick R. Jackson C.
 Description: Game Jam: Castle, knight themed jump game with combat late game.
 """
+@namespace
+class SpriteKind():
+    heart = SpriteKind.create()
+    key = SpriteKind.create()
+    multiplier = SpriteKind.create()
+    wings = SpriteKind.create()
+
 #music
 def on_forever():
     music.play_melody("D E D E C - - - ", 200)
@@ -16,7 +23,7 @@ def on_forever():
     music.play_melody("- - - - - - - - ", 70)
 forever(on_forever)
 # game Description:
-game.splash("Jump Knight", "Defeat Ghosts to upgrade your knight and escape the castle!")
+game.splash("Excalibur!!!", "Defeat Ghosts to upgrade your Knight, collect Powerups to Help you Survive longer, Find all Three Keys to fight the Dark Night and Escape The Castle!!!")
 
 # boss_fight
 dark_knight = sprites.create(img("""
@@ -86,115 +93,9 @@ orb.set_position(100,90)
 knight_right = img("""
     ..................
     ..................
-    ..88..............
-    .8888fffffff......
-    .8.ffbcbcbcf......
-    ...fcbbbbbbff..e..
-    ...fbbffffff...be.
-    ...fcbdddddf...bb.
-    ...fbbd1d1df..bbe.
-    ....fbdfdfdf..bbb.
-    .....fdddddf..ebb.
-    .....ffbbbff.ccccc
-    .....fbbbbbbfdde..
-    .....fbbbfbffdde..
-    .....ffffdfc...f..
-    .....fbddddf......
-    .....fccffcf......
-    .....fbbffbbf.....
-""")
-knight_left = img("""
-    ..................
-    ..................
-    .............88...
-    .....fffffff8888..
-    .....fcbcbcbff.8..
-    .e..ffbbbbbbcf....
-    eb...ffffffbbf....
-    bb...fdddddbcf....
-    ebb..fd1d1dbbf....
-    bbb..fdfdfdbf.....
-    bbe..fdddddf......
-    cccc.ffbbbff......
-    deddfbbbbbbf......
-    deddffbfbbbf......
-    .f...cfdffff......
-    .....fddddbf......
-    .....fcffccf......
-    ....fbbffbbf......
-""")
-knight_right_jump = img("""
-    .88...............e
-    8888fffffff.....ebe
-    8.ffbcbcbcf....bbb.
-    ..fcbbbbbbff..bbbe.
-    ..fbbffffff.cebbb..
-    ..fcbdddddf..cccb..
-    ..fbbd1d1df...e.c..
-    ...fbdfdfdf...e....
-    ....fdddddf..e.....
-    ....ffbbbff.de.....
-    ....fbbbbbbfdf.....
-    ....fbbbfbff.......
-    ....ffffdfc........
-    ....fbddddf........
-    ....fccffcf........
-    ....fccffbbf.......
-    ....fbbffff........
-    .....ff..bb........
-    .....bb............
-""")
-knight_left_jump = img("""
-    ...................
-    e...............88.
-    ebe.....fffffff8888
-    .bbb....fcbcbcbff.8
-    .ebbb..ffbbbbbbcf..
-    ..bbbec.ffffffbbf..
-    ..bccc..fdddddbcf..
-    ..c.e...fd1d1dbbf..
-    ....e...fdfdfdbf...
-    .....e..fdddddf....
-    .....ed.ffbbbff....
-    .....fdfbbbbbbf....
-    .......ffbfbbbf....
-    ........cfdffff....
-    ........fddddbf....
-    ........fcffccf....
-    .......fbbffccf....
-    ........ffffbbf....
-    ........bb..ff.....
-    ............bb.....
-""")
-knight_still = img("""
-    ..................
-    .........88.......
-    ........88.8......
-    .....fffffff......
-    ....ffcbcbcff.....
-    ....fbbbbbbbf..e..
-    ....fbfffffbf..be.
-    ....fbdddddbf..bb.
-    ....fbd1d1dbf.bbe.
-    .....fdfdfdf..bbb.
-    .....fdddddf..ebb.
-    .....ffbbbff.ccccc
-    ....fbbbbbbbfdde..
-    ...dffbfffbffdde..
-    ...ddcfbbbfc...f..
-    .....fccbccf......
-    .....fccfccf......
-    .....fbbfbbf......
-""")
-
-#upgraded player
-
-upgraded_knight_right = img("""
-    ..................
-    ..................
-    ..bb...........1..
-    .bbbbfffffff..111.
-    .b.ff181818f..1b1.
+    ..88...........1..
+    .8888fffffff..111.
+    .8.ff181818f..1b1.
     ...f8111111ff.1b1.
     ...f11ffffff..1b1.
     ...f81dddddf..1b1.
@@ -209,19 +110,19 @@ upgraded_knight_right = img("""
     .....f88ff8f......
     .....f11ff11f.....
 """)
-upgraded_knight_left = img("""
+knight_left = img("""
     ..................
     ..................
-    ..1...........bb..
-    .111..fffffffbbbb.
-    .1b1..f818181ff.b.
+    ..1...........88..
+    .111..fffffff8888.
+    .1b1..f818181ff.8.
     .1b1.ff1111118f...
     .1b1..ffffff11f...
     .1b1..fddddd18f...
     .1b1..fd1d1d11f...
     .1c1..fdfdfd1f....
     .1c1..fdddddf.....
-    ffff..ff111ff.....
+    fffff.ff111ff.....
     ..eddf111551f.....
     ..eddff1f111f.....
     .f5f..8f1ffff.....
@@ -229,7 +130,7 @@ upgraded_knight_left = img("""
     ......f8ff88f.....
     .....f11ff11f.....
 """)
-upgraded_knight_right_jump = img("""
+knight_right_jump = img("""
     .....................11
     .88.................1b1
     8888fffffff........1b1.
@@ -252,33 +153,33 @@ upgraded_knight_right_jump = img("""
     .......................
     .......................
 """)
-upgraded_knight_left_jump = img("""
-    .11.....................
-    .1b1.................bb.
-    ..1b1........fffffffbbbb
-    ...1b1.......f818181ff.b
-    ....1b1.....ff1111118f..
-    .....1c1..f..ffffff11f..
-    ......1c1f...fddddd18f..
-    .......1ee...fd1d1d11f..
-    .......feee..fdfdfd1f...
-    ......f..e5f.fdddddf....
-    ..........ff.ff111ff....
-    ...........df111551f....
-    ............ff1f111f....
-    .............8f1ffff....
-    .............f11111f....
-    .............f8ff88f....
-    ............f11ff88f....
-    ...............ff11f....
-    ........................
-    ........................
-    ........................
+knight_left_jump = img("""
+    11.....................
+    1b1.................88.
+    .1b1........fffffff8888
+    ..1b1.......f818181ff.8
+    ...1b1.....ff1111118f..
+    ....1c1..f..ffffff11f..
+    .....1c1f...fddddd18f..
+    ......1ee...fd1d1d11f..
+    ......feee..fdfdfd1f...
+    .....f..e5f.fdddddf....
+    .........ff.ff111ff....
+    ..........df111551f....
+    ...........ff1f111f....
+    ............8f1ffff....
+    ............f11111f....
+    ............f8ff88f....
+    ...........f11ff88f....
+    ..............ff11f....
+    .......................
+    .......................
+    .......................
 """)
-upgraded_knight_still = img("""
+knight_still = img("""
     ..................
-    .........bb.......
-    ........bb.b...1..
+    .........88.......
+    ........88.8...1..
     .....fffffff..111.
     ....ff81818ff.1b1.
     ....f1111111f.1b1.
@@ -294,6 +195,115 @@ upgraded_knight_still = img("""
     .....f88188f...f..
     .....f88f88f......
     .....f11f11f......
+""")
+
+#upgraded player
+
+upgraded_knight_right = img("""
+    ..................
+    ..................
+    ..2222............
+    .2222fffffff...2..
+    .22ff515151ff.555.
+    .22f1555555ff51dd5
+    .2.f55fffffff.515.
+    ...f15f5555f...5..
+    ...f5f5fffff...5..
+    ....fff55f5f...5..
+    ....5f55555f...5..
+    ...25ff555ff...5..
+    ...22f522555f1f5..
+    ...22f555f5ff1f5..
+    ...22ffff5f1...5..
+    ..222f52225f...5..
+    ..22.f11ff1f...5..
+    .222.f55ff55f..f..
+""")
+upgraded_knight_left = img("""
+    ..................
+    ..................
+    ............2222..
+    ..2...fffffff2222.
+    .555.ff151515ff22.
+    5dd15ff5555551f22.
+    .515.fffffff55f.2.
+    ..5...f5555f51f...
+    ..5...fffff5f5f...
+    ..5...f5f55fff....
+    ..5...f55555f5....
+    ..5...ff555ff52...
+    ..5f1f555225f22...
+    ..5f1ff5f555f22...
+    ..5...1f5ffff22...
+    ..5...f52225f222..
+    ..5...f1ff11f.22..
+    ..f..f55ff55f.222.
+""")
+upgraded_knight_right_jump = img("""
+    .......................
+    ..2222.................
+    .2222fffffff...........
+    .22ff515151f...........
+    .22f1555555ff...5552...
+    .2.f55ffffff....5155...
+    ...f15f5555f....51d5...
+    ...f5f5fffff....5555...
+    ....fff55f5f...5.......
+    ....5f55555f.f5........
+    ....5ff555ff.ff........
+    ....2f522555f1.........
+    ....2f555f5ff..........
+    ..222ffff5f1...........
+    ..222f52225f...........
+    .222.f11ff1f...........
+    .222.f51ff55f..........
+    .22.5f55ff.............
+    .2.5...................
+    2.f....................
+    .......................
+""")
+upgraded_knight_left_jump = img("""
+    .......................
+    .................2222..
+    ...........fffffff2222.
+    ...........f151515ff22.
+    ...2555...ff5555551f22.
+    ...5515....ffffff55f.2.
+    ...5d15....f5555f51f...
+    ...5555....fffff5f5f...
+    .......5...f5f55fff....
+    ........5f.f55555f5....
+    ........ff.ff555ff5....
+    .........1f555225f2....
+    ..........ff5f555f2....
+    ...........1f5ffff222..
+    ...........f52225f222..
+    ...........f1ff11f.222.
+    ..........f55ff15f.222.
+    .............ff55f5.22.
+    ...................5.2.
+    ....................f.2
+    .......................
+""")
+upgraded_knight_still = img("""
+    ..................
+    ........222.......
+    .......22222......
+    .....fffffff2.....
+    ....ff15151ff..2..
+    ....f5555555f.555.
+    ....f5fffff5f5d1d5
+    ....f5555555f.515.
+    ....f55fff55f..5..
+    .....f55f55f...5..
+    .....f55555f...5..
+    ....2ff555ff2..5..
+    ....f5552255f1f5..
+    ...1ff5fff5ff1f5..
+    ...f12f222f12..5..
+    ....2f11211f2..5..
+    ....2f51f15f2..5..
+    ....2f55f55f...f..
 """)
 
 knight = sprites.create(knight_still,SpriteKind.player)
@@ -444,38 +454,38 @@ scene.set_tile_map(img("""
     4444443333444444
     4444333333334555
     4433444555553355
-    4341555555551535
-    35555a6555555553
+    4345555555555535
+    35555a5555555553
     3555aaaa55aaaaa3
     35aaaaaaaaaaaaa3
     3aaaaaaaaaaaaaa3
-    eeeeeeeeeee...ee
+    eeeeeeeeeee111ee
     f..............f
-    f.7.2.....2....f
+    f...2.....2....f
     feee...b.b.eeeef
     f......8.8.....f
     f......8.8.....f
     f......eee.....f
     f..............f
-    feee2..bb..2...f
+    feee2..bb..2.6.f
     f......88......f
     f......ee......f
     f..............f
     feee...b.b.eeeef
     f......8.8.....f
     f...2..8.8.2...f
-    f......eee...c.f
-    f.9.........eeef
-    feee...bb......f
-    f......88......f
-    f......ee......f
+    f......eee.....f
+    f.9..........eef
+    feee...b.b.....f
+    f......8.8.....f
+    f......eee.....f
     f...2......2...f
-    f......b.b.eeeef
-    feee...8.8.....f
+    f......b.b.....f
+    feee...8.8..eeef
     f......8.8.....f
     f......eee.....f
     f.....b.b......f
-    feee2.8.8..2...f
+    feee2.8.8..2.6.f
     f.....8.8......f
     f.....eee......f
     f..............f
@@ -483,19 +493,19 @@ scene.set_tile_map(img("""
     f......bb......f
     f...2..88..2...f
     f......ee......f
-    f.c..........7.f
+    f..............f
     feee...bb...eeef
     f......88......f
     f......ee......f
     f...2......2...f
-    f.....b.b.beeeef
-    f.....8.8.e....f
+    f.....b.b..eeeef
+    f.....8.8......f
     f.....8.8......f
     f.....eee......f
-    f..............f
+    f..9...........f
     feee2......2...f
     f..............f
-    f........9.....f
+    f...........6..f
     fddddddddddddddf
 """))
 scene.set_tile(15, img("""
@@ -529,10 +539,10 @@ scene.set_tile(13, img("""
     c c c c c c c c c c c c c c c c
     c c c c c c c c c c c c c c c c
     c c c c c c c c c c c c c c c c
-    c c c c c c c c c c c c c c c c
-    c c c c c c c c c c c c c c c c
-    c c c c c c c c c c c c c c c c
-    f f f f f f f f f f f f f f f f
+    c c 4 4 c 4 4 4 5 5 4 c c 4 4 4
+    4 4 4 4 4 4 2 4 4 4 4 4 4 5 4 2
+    4 2 5 5 4 4 4 4 2 4 4 4 4 4 5 4
+    2 4 4 5 4 4 4 2 2 4 4 4 4 4 4 4
 """), True)
 scene.set_tile(14, img("""
     e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e e
@@ -609,40 +619,30 @@ scene.set_tile(10, img("""
     a a a a a a a a a a a a a a a a
 """))
 scene.set_tile(6, img("""
-    a a a a d d d d d d d a a a a a
-    a a d d d d 1 1 1 d d d d a a a
-    a d d d d d d d d d d d d d a a
-    a d d d d d d d d d d d d d a a
-    d d d 1 1 d d d d d 1 1 d d d a
-    d d d 1 1 d d d d d 1 1 d d d a
-    d d d d d d d d d d d d d d 1 a
-    d d d d d d 1 d d d d d d 1 1 a
-    d 1 d d d d 1 1 d d d d d d d a
-    d 1 d d d d d d d d d d d d d a
-    d 1 d d d d 1 1 d d d d d d d a
-    a d d d d d 1 1 d d d d d d a a
-    a d d 1 d d d d d d 1 1 d d a a
-    a a d d d d d d d d d d d a a a
-    a a a a d d d d d d d a a a a a
-    a a a a a a a a a a a a a a a a
-"""))
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . 2 2 . . . . . . . . . . . .
+    . 2 c c 2 2 2 2 2 2 2 2 2 . . .
+    2 c f f b b b b b b b b b 2 . .
+    2 c f f b b b b b b b b b b 2 .
+    . 2 b b 2 f 2 b 2 f 2 b 2 2 . .
+    . . 2 2 . 2 2 f 2 2 2 f 2 . . .
+    . . . . . . . 2 . . . 2 . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+"""), True)
 scene.set_tile(1, img("""
-    5 5 5 5 5 b c d d c b 5 5 5 5 5
-    5 5 5 5 5 d 1 d d d d 5 5 5 5 5
-    5 5 5 5 5 1 d b b d d 5 5 5 5 5
-    5 5 5 5 5 d c d f f d 5 5 5 5 5
-    5 5 5 5 5 5 d f f d 5 5 5 5 5 5
-    5 5 5 5 5 f f . . f f 5 5 5 5 5
-    5 5 5 5 5 f . 5 . . f 5 5 5 5 5
-    5 5 5 5 f f 5 5 5 . f f 5 5 5 5
-    5 5 5 5 f f 5 4 2 5 f f 5 5 5 5
-    5 5 5 5 f . 4 2 2 5 . f 5 5 5 5
-    5 5 5 5 f 5 5 4 4 5 . f 5 5 5 5
-    5 5 5 5 f . 5 4 4 4 5 f 5 5 5 5
-    5 5 5 5 f . 5 5 5 5 . f 5 5 5 5
-    5 5 5 5 f d e e e e d f 5 5 5 5
-    5 5 5 5 5 f f e e f f 5 5 5 5 5
-    5 5 5 5 5 5 5 f f 5 5 5 5 5 5 5
+    d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d
+    d e e e e e e e e e e e e 1 d 1 1 d 1 e e e e e e e e e e e b d
+    d e b e e e e e e b e e e 1 d 5 5 d 1 e b e e e e e b e e b c d
+    d e c b e e e e e e e b e 1 d 5 5 d 1 e e e e e e c b e e e e d
+    d b e e e e e e e e e c e 1 d 1 1 d 1 e e e e b e e e e e e e d
+    d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d
 """))
 scene.set_tile(11, img("""
     f f f f f f f f f f f f f f f f
@@ -683,7 +683,7 @@ scene.set_tile(8, img("""
 #enemies
 
 # Powerups
-scene.set_tile(7, img("""
+heart = sprites.create(img("""
     f f f f f f f f f f f f f f f f
     f f f f f f f f f f f f f f f f
     f f f f 1 1 f f f 1 1 f f f f f
@@ -700,8 +700,28 @@ scene.set_tile(7, img("""
     f f f f f f f f f f f f f f f f
     f f f f f f f f f f f f f f f f
     f f f f f f f f f f f f f f f f
-"""))
-scene.set_tile(12, img("""
+"""), SpriteKind.heart)
+tiles.place_on_tile(heart, tiles.get_tile_location(13, 42))
+heart = sprites.create(img("""
+    f f f f f f f f f f f f f f f f
+    f f f f f f f f f f f f f f f f
+    f f f f 1 1 f f f 1 1 f f f f f
+    f f f 1 2 2 1 f 1 2 2 1 f f f f
+    f f 1 2 2 2 2 1 2 2 2 2 1 f f f
+    f f 1 2 2 2 2 2 2 1 2 2 1 f f f
+    f f 1 2 2 2 2 2 1 2 2 2 1 f f f
+    f f 1 2 2 2 2 2 2 2 2 2 1 f f f
+    f f f 1 2 2 2 2 2 2 2 1 f f f f
+    f f f f 1 2 2 2 2 2 1 f f f f f
+    f f f f f 1 2 2 2 1 f f f f f f
+    f f f f f f 1 2 1 f f f f f f f
+    f f f f f f f 1 f f f f f f f f
+    f f f f f f f f f f f f f f f f
+    f f f f f f f f f f f f f f f f
+    f f f f f f f f f f f f f f f f
+"""), SpriteKind.heart)
+tiles.place_on_tile(heart, tiles.get_tile_location(2, 10))
+wings = sprites.create(img("""
     f f f f f f f f f f f f f f f f
     f f f f f f f f f f f f f f f f
     f f f f f f f f f f f f f f f f
@@ -718,7 +738,35 @@ scene.set_tile(12, img("""
     f f f f f f f f f f f f f f f f
     f f f f f f f f f f f f f f f f
     f f f f f f f f f f f f f f f f
-"""))
+"""), SpriteKind.wings)
+tiles.place_on_tile(wings, tiles.get_tile_location(2, 42))
+wings = sprites.create(img("""
+    f f f f f f f f f f f f f f f f
+    f f f f f f f f f f f f f f f f
+    f f f f f f f f f f f f f f f f
+    1 1 1 f f f f f f f f f f 1 1 1
+    f 1 1 1 f f f f f f f f 1 1 1 f
+    f 1 1 d 1 1 1 f f 1 1 1 d 1 1 f
+    f 1 1 d d 1 1 d d 1 1 d d 1 1 f
+    f 1 d 1 b d 1 d d 1 d b 1 d 1 f
+    f d 1 1 1 b 1 d d 1 b 1 1 1 d f
+    f f 1 1 1 b 1 d d 1 b 1 1 1 f f
+    f f f 1 1 1 1 d d 1 1 1 1 f f f
+    f f f f 1 1 1 d 1 1 1 1 f f f f
+    f f f f f f f 1 1 f f f f f f f
+    f f f f f f f f f f f f f f f f
+    f f f f f f f f f f f f f f f f
+    f f f f f f f f f f f f f f f f
+"""), SpriteKind.wings)
+tiles.place_on_tile(wings, tiles.get_tile_location(13, 23))
+
+
+
+def on_overlap3(sprite, otherSprite):
+    otherSprite.destroy()
+    info.change_life_by(1)
+sprites.on_overlap(SpriteKind.player, SpriteKind.heart, on_overlap3)
+
 scene.set_tile(9, img("""
     ffffffffffffffffffff
     ffffffffffffffffffff
@@ -737,24 +785,7 @@ scene.set_tile(9, img("""
     ffffffffffffffffffff
     ffffffffffffffffffff
 """))
-scene.set_tile(7, img("""
-    f f f f f f f f f f f f f f f f
-    f f f f f f f f f f f f f f f f
-    f f f f 1 1 f f f 1 1 f f f f f
-    f f f 1 2 2 1 f 1 2 2 1 f f f f
-    f f 1 2 2 2 2 1 2 2 2 2 1 f f f
-    f f 1 2 2 2 2 2 2 1 2 2 1 f f f
-    f f 1 2 2 2 2 2 1 2 2 2 1 f f f
-    f f 1 2 2 2 2 2 2 2 2 2 1 f f f
-    f f f 1 2 2 2 2 2 2 2 1 f f f f
-    f f f f 1 2 2 2 2 2 1 f f f f f
-    f f f f f 1 2 2 2 1 f f f f f f
-    f f f f f f 1 2 1 f f f f f f f
-    f f f f f f f 1 f f f f f f f f
-    f f f f f f f f f f f f f f f f
-    f f f f f f f f f f f f f f f f
-    f f f f f f f f f f f f f f f f
-"""))
+
 def on_update_interval():
     ghost1 = sprites.create_projectile_from_side(img("""
         ........................
@@ -961,8 +992,9 @@ lava = sprites.create(img("""
     24222444442424442422244444242444242224444424244424224222444442424442444222444442424442442224444424244424222444442424442422244444242444242242224444424244424222444442424442422244444242444242224444424244424222444442424442422224.
     44444444444544444444444444454444444444444445444444444444444444544444444444444444544444444444444445444444444444444544444444444444454444444444444444445444444444444444544444444444444454444444444444445444444444444444544444444444.
 """),SpriteKind.enemy)
-lava.set_position(120, 1020)
+lava.set_position(128, 1020)
 lava.set_flag(SpriteFlag.SHOW_PHYSICS, True)
+lava.set_velocity(0, -25)
 
 #animation
 def on_update():
@@ -989,13 +1021,10 @@ def on_update():
     else:
         knight.set_image(upgraded_knight_still)
 
-    if lava.y > 125:
-        lava.set_velocity(0, -23)
-    else:
+    if lava.y < 215:
         lava.set_velocity(0, 0)
-        lava.set_position(174, 125)
-        scene.camera_shake()
-        # lava.set_position(128, lava.y - .5)
+        scene.camera_shake(4, 500)
+        lava.set_position(80, 210)
 game.on_update(on_update)
 
 def on_overlap2(sprite, otherSprite):
